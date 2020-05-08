@@ -1,4 +1,4 @@
-#include <linux/module.h>
+
 #include <linux/kernel.h>
 #include <linux/fs.h>		//file_operations structure- which of course allows use to open/close, read/write to device
 #include <linux/cdev.h> 	//this is a chr driver; makes cdev available
@@ -56,58 +56,6 @@ static struct class *my_class;			//name-->appears in /proc/devices
 static struct device *my_device;
 
 #define DEVICE_NAME "fiocontrol"
-
-
-
-/*(7)called on device_file open
-//	inode reference to the file on disk
-//	and contains information about that file
-//	struct file is represents an abstract open file
-int device_open(struct inode *inode, struct file *filp){
-	
-	//only allow one process to open this device by using a semaphore as mutual exclusive lock- mutex
-	if(down_interruptible(&virtual_device.sem) != 0){
-		printk(KERN_ALERT "IOCONTROL: could not lock device during open\n");
-		return -1;	
-	}
-	
-	printk(KERN_INFO "IOCONTROL: opened device\n");
-	return 0;
-}
-*/
-
-/*(8) called when user wants to get information from the device
-ssize_t device_read(struct file* filp, char *bufStoreData, size_t bufCount, loff_t* curOffset){
-	//take data from kernel space(device) to user space (process)
-	//copy_to_user (destination, source, sizeToTransfer)
-	printk(KERN_INFO "soliduscode: Reading from device\n");
-	ret = copy_to_user(bufStoreData,virtual_device.data, bufCount);
-	return ret;
-}
-*/
-
-/*(9) called when user wants to send information to the device
-ssize_t device_write(struct file* filp, const char* bufSourceData, size_t bufCount, loff_t* curOffset){
-	//send data from user to kernel
-	//copy_from_user (dest, source, count)
-	
-	printk(KERN_INFO "soliduscode: writing to device\n");
-	ret = copy_from_user(virtual_device.data, bufSourceData, bufCount);
-	return ret; 
-}
-*/
-
-/*(10) called upon user close
-int device_close(struct inode *inode, struct file *filp){
-	
-	//by calling up, which is opposite of down for semaphore, we release the mutex that we optained at device open
-	//this has the effect of allowing other process to use the device now
-	up(&virtual_device.sem);
-	printk(KERN_INFO "soliduscode: closed device\n");
-	return 0;
-
-}
-*/
 
 //HERE
 //(6) Tell the kernel which functions to call when user operates on our device file
