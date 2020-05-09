@@ -1,6 +1,6 @@
-obj-m += iocontrol.o
+obj-m += iocontrol2.o
 
-KDIR = /usr/src/linux-headers-5.3.0-51-generic
+KDIR = /usr/src/linux-headers-$(uname -r)
 
 all:
 	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules

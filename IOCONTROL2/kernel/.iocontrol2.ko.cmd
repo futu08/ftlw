@@ -1,0 +1,1 @@
+cmd_/home/furkan/dlr/Driver/IOCONTROL2/kernel/iocontrol2.ko := ld -r -m elf_x86_64  -z max-page-size=0x200000 -T ./scripts/module-common.lds --build-id  -o /home/furkan/dlr/Driver/IOCONTROL2/kernel/iocontrol2.ko /home/furkan/dlr/Driver/IOCONTROL2/kernel/iocontrol2.o /home/furkan/dlr/Driver/IOCONTROL2/kernel/iocontrol2.mod.o ;  true
