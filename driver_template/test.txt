@@ -1,0 +1,2 @@
+Das ist ein Test. Von nun an will ich gerne genauso gut unter Windows arbeiten, wie unter Linux. Ich
+will nicht mehr abhängig von VMs sein. Windows bietet viele Möglichkeiten um das zu umgehen. 
